@@ -5,6 +5,7 @@
  */
 import { supabase, isSupabaseConfigured } from '../supabase/client';
 import { toRow, fromRows, camelToSnake } from '../supabase/caseMapping';
+import { generateUUID } from '../utils/uuid';
 
 interface WithId {
   id: string;
@@ -52,7 +53,7 @@ export function createStoreCollectionService<T extends WithId>(tableName: string
       // Gerado no cliente (tal como o doc(collection(...)).id do Firestore),
       // para poder ser usado antes do registo ser criado (ex.: pastas de
       // upload de imagem que incluem o id do item).
-      return crypto.randomUUID();
+      return generateUUID();
     },
   };
 }

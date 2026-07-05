@@ -36,7 +36,7 @@ function fromRow(row: Record<string, any> | null): PlatformUser | null {
 export const userService = {
   async create(profile: PlatformUser): Promise<void> {
     assertConfigured();
-    const { error } = await supabase!.from(TABLES.USERS).insert(toRow(profile));
+    const { error } = await supabase!.from(TABLES.USERS).upsert(toRow(profile));
     if (error) throw error;
   },
 

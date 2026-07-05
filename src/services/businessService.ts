@@ -1,6 +1,7 @@
 import { supabase, isSupabaseConfigured } from '../supabase/client';
 import { toRow, fromRow } from '../supabase/caseMapping';
 import { TABLES } from '../supabase/tables';
+import { generateUUID } from '../utils/uuid';
 import type { Business, BusinessStatus } from '../models/business.model';
 import { slugify } from '../utils/slugify';
 
@@ -40,7 +41,7 @@ export const businessService = {
   /** Auto-creates a draft business right after sign-up (called from AuthContext). */
   async createDraftForOwner(ownerId: string, ownerName: string): Promise<Business> {
     assertConfigured();
-    const id = crypto.randomUUID();
+    const id = generateUUID();
     const slug = await this.generateUniqueSlug(ownerName || 'minha-loja');
     const now = new Date().toISOString();
     const business: Business = {

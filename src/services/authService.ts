@@ -46,7 +46,11 @@ function friendlyAuthError(error: any): Error {
 
 export const authService = {
   /** Creates the Supabase Auth account only. Business/user rows are created by AuthContext. */
-  async registerAccount(name: string, email: string, password: string): Promise<User> {
+  async registerAccount(
+    name: string,
+    email: string,
+    password: string
+  ): Promise<{ user: User; session: import('@supabase/supabase-js').Session | null }> {
     assertConfigured();
     const { data, error } = await supabase!.auth.signUp({
       email,
@@ -55,7 +59,7 @@ export const authService = {
     });
     if (error) throw friendlyAuthError(error);
     if (!data.user) throw new Error('Falha ao criar conta. Tente novamente.');
-    return data.user;
+    return { user: data.user, session: data.session };
   },
 
   async logIn(email: string, password: string): Promise<User> {

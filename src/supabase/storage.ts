@@ -67,7 +67,14 @@ export const uploadProductImage = (
 
       // ── Supabase Storage upload ─────────────────────────────
       if (isSupabaseConfigured && supabase) {
-        const path = `stores/${LEGACY_BUSINESS_ID}/products/${productId}/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+        const { data: sessionData } = await supabase.auth.getSession();
+        const ownerId = sessionData.session?.user?.id;
+        if (!ownerId) {
+          reject(new Error('Sessão expirada. Inicie sessão novamente antes de enviar imagens.'));
+          return;
+        }
+
+        const path = `stores/${ownerId}/${LEGACY_BUSINESS_ID}/products/${productId}/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
 
         let progress = 0;
         const interval = setInterval(() => {

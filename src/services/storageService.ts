@@ -1,9 +1,12 @@
 /**
  * Image upload service for the multi-tenant platform — Supabase Storage.
  *
- * Each business gets its own folder so images never mix between tenants:
- * `stores/{businessId}/{context}/...`, no mesmo bucket "product-images"
- * usado pelo catálogo legado (ver src/supabase/storage.ts).
+ * Path convention: stores/{ownerId}/{businessId}/{context}/{ficheiro}
+ *
+ * `ownerId` (o auth.uid() de quem está a fazer upload) é o segmento que a
+ * política de RLS do storage verifica — uma simples comparação de string,
+ * sem nenhuma subquery a outra tabela. `businessId` fica no caminho só
+ * para organização/legibilidade dos ficheiros no bucket.
  */
 import { supabase, isSupabaseConfigured } from '../supabase/client';
 import { compressImage } from '../supabase/storage';
@@ -16,7 +19,7 @@ export { isSupabaseConfigured };
 /**
  * Uploads an image scoped to a business folder, e.g.:
  *   uploadBusinessImage(file, 'businessId123', 'products/prod_1', onProgress)
- * -> stores/businessId123/products/prod_1/<file>
+ * -> stores/{ownerId}/businessId123/products/prod_1/<file>
  */
 export function uploadBusinessImage(
   file: File,
@@ -27,9 +30,17 @@ export function uploadBusinessImage(
   return new Promise(async (resolve, reject) => {
     try {
       const compressedBlob = await compressImage(file);
-      const path = `stores/${businessId}/${context}/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
 
       if (isSupabaseConfigured && supabase) {
+        const { data: sessionData } = await supabase.auth.getSession();
+        const ownerId = sessionData.session?.user?.id;
+        if (!ownerId) {
+          reject(new Error('Sessão expirada. Inicie sessão novamente antes de enviar imagens.'));
+          return;
+        }
+
+        const path = `stores/${ownerId}/${businessId}/${context}/${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+
         let progress = 0;
         const interval = setInterval(() => {
           progress = Math.min(progress + 12, 90);
