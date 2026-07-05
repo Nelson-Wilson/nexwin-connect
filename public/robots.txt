@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Allow: /loja/
+
+Sitemap: https://www.malambeemoda.com/sitemap.xml
+
+# Disallow admin panel indexing
+Disallow: /admin
+Disallow: /?admin=*
+
+# Disallow private platform routes (owner-only, nothing to index)
+Disallow: /painel
+Disallow: /login
+Disallow: /registar
+Disallow: /onboarding
+Disallow: /recuperar-senha
