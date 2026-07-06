@@ -15,6 +15,7 @@ export const TABLES = {
   TESTIMONIALS: 'testimonials',
   PROMOTIONS: 'promotions',
   SETTINGS: 'settings',
+  SITE_STATS: 'site_stats',
 } as const;
 
 /**

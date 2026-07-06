@@ -1,7 +1,7 @@
 {
-  "short_name": "Malambe & Moda",
-  "name": "Malambe & Moda — Catálogo Digital",
-  "description": "Catálogo Digital Premium de Moda, Calçados e Sorvete Artesanal de Malambe de Moçambique.",
+  "short_name": "NexWin Connect",
+  "name": "NexWin Connect — Crie a sua Loja Online",
+  "description": "Crie e personalize a sua loja online gratuitamente e venda pelo WhatsApp com a NexWin Connect.",
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -28,5 +28,5 @@
   "display": "standalone",
   "orientation": "portrait",
   "lang": "pt-MZ",
-  "categories": ["shopping", "fashion", "food"]
+  "categories": ["business", "shopping"]
 }

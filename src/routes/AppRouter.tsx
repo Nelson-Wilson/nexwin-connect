@@ -3,9 +3,13 @@ import { AuthProvider } from '../contexts/AuthContext';
 import { BusinessProvider } from '../contexts/BusinessContext';
 import ProtectedRoute from './ProtectedRoute';
 
-// Legacy single-tenant catalogue — untouched, mounted as-is at "/" so nothing
-// regresses while the SaaS layer is built alongside it.
+// Legacy single-tenant catalogue — component untouched, only its route moved
+// (see note below). Kept reachable at "/catalogo" so it keeps working exactly
+// as before, it's just no longer what greets first-time visitors at "/".
 import LegacyApp from '../App';
+
+// Institutional homepage for the NexWin Connect platform
+import LandingPage from '../pages/marketing/LandingPage';
 
 // New SaaS pages
 import LoginPage from '../pages/auth/LoginPage';
@@ -29,8 +33,13 @@ export default function AppRouter() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Legacy catalogue — preserved exactly as before */}
-          <Route path="/" element={<LegacyApp />} />
+          {/* Institutional homepage — the platform, not a single catalogue */}
+          <Route path="/" element={<LandingPage />} />
+
+          {/* Legacy single-tenant catalogue — component preserved exactly as
+              before, moved here from "/" so it keeps working for anyone with
+              the old link/bookmarks. */}
+          <Route path="/catalogo" element={<LegacyApp />} />
 
           {/* Public multi-tenant storefront */}
           <Route path="/loja/:slug" element={<PublicStorePage />} />

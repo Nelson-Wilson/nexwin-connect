@@ -3,3 +3,4 @@ export * from './businessService';
 export * from './userService';
 export * from './storeServices';
 export * from './storageService';
+export * from './platformStatsService';

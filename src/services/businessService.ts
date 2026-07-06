@@ -108,4 +108,24 @@ export const businessService = {
   async setStatus(businessId: string, status: BusinessStatus): Promise<void> {
     await this.update(businessId, { status });
   },
+
+  /**
+   * Lojas activas mais recentes — usado na homepage institucional para
+   * mostrar exemplos reais de lojas criadas na plataforma (secção
+   * "Exemplos de Lojas"). Só devolve o mínimo necessário para um cartão
+   * de vitrine; nunca falha em silêncio para o resto do site — quem chama
+   * decide o que mostrar caso a consulta falhe ou a lista venha vazia.
+   */
+  async listActive(limitCount = 8): Promise<Business[]> {
+    assertConfigured();
+    const { data, error } = await supabase!
+      .from(TABLES.BUSINESSES)
+      .select('*')
+      .eq('status', 'active')
+      .is('deleted_at', null)
+      .order('created_at', { ascending: false })
+      .limit(limitCount);
+    if (error) throw error;
+    return (data ?? []).map((row) => fromRow<Business>(row)).filter((b): b is Business => b !== null);
+  },
 };

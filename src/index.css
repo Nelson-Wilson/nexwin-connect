@@ -66,6 +66,16 @@
   }
 }
 
+/* Swiper pagination — tuned to the brand palette instead of the default blue */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.25) !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb !important;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
