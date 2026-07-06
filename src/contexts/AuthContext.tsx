@@ -55,7 +55,12 @@ async function ensureProfile(authUser: User): Promise<PlatformUser> {
     if (raceCheck) return raceCheck;
 
     const name = (authUser.user_metadata?.display_name as string) || authUser.email || 'Minha Loja';
-    const business = await businessService.createDraftForOwner(authUser.id, name);
+
+    // Auto-cura: se já existir uma loja para este owner (ex.: a linha em
+    // `users` foi perdida por algum motivo, mas a loja não), reutiliza-a
+    // em vez de criar uma segunda.
+    const existingBusiness = await businessService.getByOwnerId(authUser.id);
+    const business = existingBusiness ?? (await businessService.createDraftForOwner(authUser.id, name));
     const profile: PlatformUser = {
       uid: authUser.id,
       name,

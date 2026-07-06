@@ -81,12 +81,23 @@ export const authService = {
     if (error) throw friendlyAuthError(error);
   },
 
+  /**
+   * IMPORTANTE: só usamos o listener onAuthStateChange, que já dispara
+   * imediatamente com a sessão actual (evento INITIAL_SESSION) ao
+   * subscrever. Chamar TAMBÉM getSession().then(callback) aqui, como
+   * antes, disparava o callback duas vezes quase ao mesmo tempo em cada
+   * carregamento da app — e essas duas chamadas concorrentes a
+   * ensureProfile() (em AuthContext) podiam, em condições de rede lentas,
+   * criar duas lojas para o mesmo utilizador, deixando a conta ligada a
+   * um rascunho vazio em vez da loja publicada. Ver migração 0006 para o
+   * bloqueio ao nível da base de dados que impede isto de acontecer de
+   * novo mesmo que o timing no browser volte a coincidir.
+   */
   subscribe(callback: (user: User | null) => void): () => void {
     if (!isSupabaseConfigured || !supabase) {
       callback(null);
       return () => {};
     }
-    supabase.auth.getSession().then(({ data }) => callback(data.session?.user ?? null));
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       callback(session?.user ?? null);
     });

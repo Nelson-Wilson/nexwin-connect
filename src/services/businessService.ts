@@ -38,7 +38,14 @@ export const businessService = {
     return candidate;
   },
 
-  /** Auto-creates a draft business right after sign-up (called from AuthContext). */
+  /**
+   * Auto-creates a draft business right after sign-up (called from
+   * AuthContext). Idempotente ao nível da base de dados: se já existir uma
+   * loja para este owner (ver índice único da migração 0006), o INSERT
+   * falha com "duplicate key" e devolvemos a loja já existente em vez de
+   * criar uma segunda — é o que evita órfãos mesmo que ensureProfile()
+   * seja chamado duas vezes em paralelo.
+   */
   async createDraftForOwner(ownerId: string, ownerName: string): Promise<Business> {
     assertConfigured();
     const id = generateUUID();
@@ -57,7 +64,15 @@ export const businessService = {
       updatedAt: now,
     };
     const { error } = await supabase!.from(TABLES.BUSINESSES).insert(toRow(business));
-    if (error) throw error;
+    if (error) {
+      if (error.code === '23505') {
+        // Outra chamada concorrente já criou a loja deste owner primeiro —
+        // vai buscá-la em vez de propagar o erro.
+        const existing = await this.getByOwnerId(ownerId);
+        if (existing) return existing;
+      }
+      throw error;
+    }
     return business;
   },
 

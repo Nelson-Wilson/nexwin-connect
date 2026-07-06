@@ -26,6 +26,7 @@ import StoreContact from './components/StoreContact';
 import StoreFooter from './components/StoreFooter';
 import StoreProductModal from './components/StoreProductModal';
 import StoreWhatsAppFab from './components/StoreWhatsAppFab';
+import StoreOwnerReturnBar from './components/StoreOwnerReturnBar';
 import NotFoundPage from '../shared/NotFoundPage';
 
 export default function PublicStorePage() {
@@ -124,6 +125,7 @@ export default function PublicStorePage() {
   return (
     <StoreContext.Provider value={storeValue}>
       <div className="bg-[#0F172A] min-h-screen text-slate-100 font-sans selection:bg-blue-600 selection:text-white">
+        <StoreOwnerReturnBar businessId={business.id} />
         <StoreHeader
           searchValue={searchText}
           onSearchChange={setSearchText}
