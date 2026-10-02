@@ -13,15 +13,15 @@ export function PageHeader({
   onAction?: () => void;
 }) {
   return (
-    <div className="flex items-start justify-between gap-4 mb-6">
+    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-6">
       <div>
-        <h1 className="text-2xl font-bold text-white mb-1">{title}</h1>
-        {description && <p className="text-sm text-slate-400">{description}</p>}
+        <h1 className="text-2xl font-bold text-slate-900 mb-1">{title}</h1>
+        {description && <p className="text-sm text-slate-500">{description}</p>}
       </div>
       {actionLabel && onAction && (
         <button
           onClick={onAction}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg px-4 py-2.5 transition-colors shrink-0"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl px-4 py-2.5 shadow-md shadow-blue-600/20 transition-all active:scale-[0.98] shrink-0 self-start"
         >
           <Plus size={16} />
           {actionLabel}
@@ -33,10 +33,10 @@ export function PageHeader({
 
 export function EmptyState({ icon, title, description }: { icon: ReactNode; title: string; description: string }) {
   return (
-    <div className="glass-card rounded-xl p-12 text-center">
-      <div className="mx-auto mb-4 text-slate-600">{icon}</div>
-      <p className="text-white font-semibold mb-1">{title}</p>
-      <p className="text-sm text-slate-400">{description}</p>
+    <div className="ui-card rounded-xl p-12 text-center">
+      <div className="mx-auto mb-4 text-slate-400">{icon}</div>
+      <p className="text-slate-900 font-semibold mb-1">{title}</p>
+      <p className="text-sm text-slate-500">{description}</p>
     </div>
   );
 }

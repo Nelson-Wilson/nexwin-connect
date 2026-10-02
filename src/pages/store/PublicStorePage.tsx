@@ -112,8 +112,8 @@ export default function PublicStorePage() {
 
   if (loadingBusiness) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
-        <Loader2 className="animate-spin text-blue-500" size={28} />
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <Loader2 className="animate-spin text-blue-600" size={28} />
       </div>
     );
   }
@@ -124,7 +124,7 @@ export default function PublicStorePage() {
 
   return (
     <StoreContext.Provider value={storeValue}>
-      <div className="bg-[#0F172A] min-h-screen text-slate-100 font-sans selection:bg-blue-600 selection:text-white">
+      <div className="bg-slate-50 min-h-screen text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
         <StoreOwnerReturnBar businessId={business.id} />
         <StoreHeader
           searchValue={searchText}
@@ -134,9 +134,9 @@ export default function PublicStorePage() {
         />
 
         {loadingData ? (
-          <div className="min-h-screen flex items-center justify-center bg-[#0F172A] flex-col gap-4">
+          <div className="min-h-screen flex items-center justify-center bg-slate-50 flex-col gap-4">
             <div className="w-10 h-10 border-2 border-blue-500/10 border-t-blue-500 rounded-full animate-spin" />
-            <p className="text-slate-400 font-bold text-[10px] tracking-widest uppercase">A carregar o catálogo...</p>
+            <p className="text-slate-500 font-bold text-[10px] tracking-widest uppercase">A carregar o catálogo...</p>
           </div>
         ) : (
           <>

@@ -61,7 +61,7 @@ export default function CategoriesPage() {
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <Loader2 className="animate-spin text-blue-500" size={24} />
+          <Loader2 className="animate-spin text-blue-600" size={24} />
         </div>
       ) : categories.length === 0 ? (
         <EmptyState
@@ -70,7 +70,7 @@ export default function CategoriesPage() {
           description="Cria a primeira categoria para começar a organizar os teus produtos."
         />
       ) : (
-        <div className="glass-card rounded-xl divide-y divide-white/5">
+        <div className="ui-card rounded-xl divide-y divide-slate-100">
           {categories.map((cat, idx) => {
             const Icon = getCategoryIcon(cat.icon);
             return (
@@ -81,31 +81,31 @@ export default function CategoriesPage() {
                 >
                   <Icon size={16} />
                 </span>
-                <p className="text-sm font-semibold text-white flex-1">{cat.name}</p>
+                <p className="text-sm font-semibold text-slate-900 flex-1">{cat.name}</p>
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => move(idx, -1)}
                     disabled={idx === 0}
-                    className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition-colors"
+                    className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-20 transition-colors"
                   >
                     <ArrowUp size={14} />
                   </button>
                   <button
                     onClick={() => move(idx, 1)}
                     disabled={idx === categories.length - 1}
-                    className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition-colors"
+                    className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-20 transition-colors"
                   >
                     <ArrowDown size={14} />
                   </button>
                   <button
                     onClick={() => setEditing(cat)}
-                    className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"
+                    className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-blue-700 hover:bg-blue-50 transition-colors"
                   >
                     <Pencil size={14} />
                   </button>
                   <button
                     onClick={() => setToDelete(cat)}
-                    className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                    className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-red-600 hover:bg-red-500/10 transition-colors"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -213,7 +213,7 @@ function CategoryFormModal({
                   type="button"
                   onClick={() => setIcon(iconName)}
                   className={`aspect-square rounded-lg flex items-center justify-center border transition-colors ${
-                    active ? 'border-blue-500 bg-blue-500/15 text-blue-400' : 'border-white/10 text-slate-400 hover:border-white/20'
+                    active ? 'border-blue-500 bg-blue-500/15 text-blue-600' : 'border-slate-200 text-slate-500 hover:border-slate-300'
                   }`}
                 >
                   <Icon size={15} />
@@ -239,16 +239,16 @@ function CategoryFormModal({
           </div>
         </FormField>
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-red-600">{error}</p>}
 
         <div className="flex justify-end gap-3 pt-2">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors">
+          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
             Cancelar
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-60 transition-colors flex items-center gap-2"
+            className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60 transition-colors flex items-center gap-2"
           >
             {saving && <Loader2 size={14} className="animate-spin" />}
             Guardar

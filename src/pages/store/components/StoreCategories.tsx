@@ -13,11 +13,11 @@ export default function StoreCategories({ onCategorySelect }: { onCategorySelect
   };
 
   return (
-    <section id="categorias" className="py-16 bg-[#0F172A] relative overflow-hidden">
+    <section id="categorias" className="py-16 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Navegue pelas Secções</span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl text-white mt-2 tracking-tight">Categorias</h2>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-600">Navegue pelas Secções</span>
+          <h2 className="font-display font-black text-3xl sm:text-4xl text-slate-900 mt-2 tracking-tight">Categorias</h2>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -33,7 +33,7 @@ export default function StoreCategories({ onCategorySelect }: { onCategorySelect
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
                 onClick={() => handleClick(cat.name)}
-                className="group flex flex-col items-center gap-3 rounded-2xl glass-card p-6 hover:-translate-y-1 hover:border-slate-700 transition-all"
+                className="group flex flex-col items-center gap-3 rounded-2xl ui-card p-6 hover:-translate-y-1 hover:border-slate-300 transition-all"
               >
                 <span
                   className="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110"
@@ -42,7 +42,7 @@ export default function StoreCategories({ onCategorySelect }: { onCategorySelect
                   <Icon size={24} />
                 </span>
                 <div className="text-center">
-                  <p className="font-display font-bold text-sm text-white">{cat.name}</p>
+                  <p className="font-display font-bold text-sm text-slate-900">{cat.name}</p>
                   <p className="text-xs text-slate-500 mt-0.5">{count} produto{count === 1 ? '' : 's'}</p>
                 </div>
               </motion.button>

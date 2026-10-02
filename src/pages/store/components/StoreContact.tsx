@@ -16,22 +16,22 @@ export default function StoreContact() {
   if (items.length === 0) return null;
 
   return (
-    <section id="contactos" className="py-16 bg-[#0F172A] border-t border-white/5">
+    <section id="contactos" className="py-16 bg-slate-50 border-t border-slate-100">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: accent }}>Fale connosco</span>
-        <h2 className="font-display font-black text-2xl sm:text-3xl text-white mt-2 mb-10 tracking-tight">Contactos</h2>
+        <h2 className="font-display font-black text-2xl sm:text-3xl text-slate-900 mt-2 mb-10 tracking-tight">Contactos</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
           {items.map((item) => {
             const Icon = item.icon;
             const content = (
-              <div className="glass-card rounded-xl p-5 flex items-center gap-4 text-left hover:-translate-y-0.5 transition-transform">
+              <div className="ui-card rounded-xl p-5 flex items-center gap-4 text-left hover:-translate-y-0.5 transition-transform">
                 <span className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${accent}22`, color: accent }}>
                   <Icon size={18} />
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs text-slate-500">{item.label}</p>
-                  <p className="text-sm font-semibold text-white truncate">{item.value}</p>
+                  <p className="text-sm font-semibold text-slate-900 truncate">{item.value}</p>
                 </div>
               </div>
             );

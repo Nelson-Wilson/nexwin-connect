@@ -29,28 +29,28 @@ export default function ForgotPasswordPage() {
     <AuthLayout title="Recuperar senha" subtitle="Enviamos-lhe um link para redefinir a sua senha.">
       {sent ? (
         <div className="text-center py-4">
-          <CheckCircle2 className="mx-auto text-emerald-400 mb-3" size={32} />
-          <p className="text-sm text-slate-300">
-            Se existir uma conta com o email <span className="text-white font-semibold">{email}</span>, enviámos
+          <CheckCircle2 className="mx-auto text-emerald-600 mb-3" size={32} />
+          <p className="text-sm text-slate-600">
+            Se existir uma conta com o email <span className="text-slate-900 font-semibold">{email}</span>, enviámos
             as instruções de recuperação.
           </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email</label>
+            <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Email</label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
               placeholder="voce@email.com"
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+            <p className="text-sm text-red-600 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
               {error}
             </p>
           )}
@@ -58,7 +58,7 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
+            className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
           >
             {submitting && <Loader2 size={16} className="animate-spin" />}
             Enviar link de recuperação
@@ -66,8 +66,8 @@ export default function ForgotPasswordPage() {
         </form>
       )}
 
-      <p className="text-sm text-slate-400 text-center mt-6">
-        <Link to="/login" className="text-blue-400 hover:text-blue-300 font-semibold">
+      <p className="text-sm text-slate-500 text-center mt-6">
+        <Link to="/login" className="text-blue-600 hover:text-blue-700 font-semibold">
           Voltar ao login
         </Link>
       </p>

@@ -28,41 +28,41 @@ export default function SettingsPage() {
 
   return (
     <div className="p-8 max-w-2xl">
-      <h1 className="text-2xl font-bold text-white mb-1">Configurações</h1>
-      <p className="text-sm text-slate-400 mb-8">Dados da loja e da tua conta.</p>
+      <h1 className="text-2xl font-bold text-slate-900 mb-1">Configurações</h1>
+      <p className="text-sm text-slate-500 mb-8">Dados da loja e da tua conta.</p>
 
-      <div className="glass-card rounded-xl p-6 space-y-4 mb-6">
-        <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Identidade da loja</p>
+      <div className="ui-card rounded-xl p-6 space-y-4 mb-6">
+        <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Identidade da loja</p>
         <FormField label="Nome da loja">
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} className={inputClass} />
         </FormField>
         <FormField label="Tipo de negócio">
           <select value={businessType} onChange={(e) => setBusinessType(e.target.value as BusinessType)} className={inputClass}>
             {BUSINESS_TYPES.map((t) => (
-              <option key={t} value={t} className="bg-[#0F172A]">{BUSINESS_TYPE_LABELS[t]}</option>
+              <option key={t} value={t} className="bg-slate-50">{BUSINESS_TYPE_LABELS[t]}</option>
             ))}
           </select>
         </FormField>
         <div className="flex items-center gap-3">
-          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-semibold text-sm rounded-lg px-4 py-2.5 transition-colors">
+          <button onClick={handleSave} disabled={saving} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold text-sm rounded-lg px-4 py-2.5 transition-colors">
             {saving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
             Guardar
           </button>
-          {saved && <span className="text-sm text-emerald-400 font-semibold">Guardado ✓</span>}
+          {saved && <span className="text-sm text-emerald-600 font-semibold">Guardado ✓</span>}
         </div>
       </div>
 
-      <div className="glass-card rounded-xl p-6 space-y-3">
-        <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Conta</p>
+      <div className="ui-card rounded-xl p-6 space-y-3">
+        <p className="text-xs font-bold uppercase tracking-widest text-slate-500">Conta</p>
         <div className="flex justify-between text-sm">
-          <span className="text-slate-400">Email</span>
-          <span className="text-white">{platformUser?.email}</span>
+          <span className="text-slate-500">Email</span>
+          <span className="text-slate-900">{platformUser?.email}</span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-slate-400">Função</span>
-          <span className="text-white capitalize">{platformUser?.role === 'owner' ? 'Proprietário' : 'Equipa'}</span>
+          <span className="text-slate-500">Função</span>
+          <span className="text-slate-900 capitalize">{platformUser?.role === 'owner' ? 'Proprietário' : 'Equipa'}</span>
         </div>
-        <Link to="/recuperar-senha" className="inline-block text-sm text-blue-400 hover:text-blue-300 font-semibold pt-2">
+        <Link to="/recuperar-senha" className="inline-block text-sm text-blue-600 hover:text-blue-700 font-semibold pt-2">
           Alterar senha
         </Link>
       </div>

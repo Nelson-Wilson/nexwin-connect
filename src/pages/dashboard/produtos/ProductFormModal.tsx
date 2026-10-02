@@ -98,13 +98,13 @@ export default function ProductFormModal({
 
           <FormField label="Categoria">
             {categories.length === 0 ? (
-              <p className="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2.5">
+              <p className="text-xs text-amber-600 bg-amber-500/10 border border-amber-500/20 rounded-lg px-3 py-2.5">
                 Cria uma categoria primeiro, em "Categorias".
               </p>
             ) : (
               <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputClass}>
                 {categories.map((c) => (
-                  <option key={c.id} value={c.name} className="bg-[#0F172A]">{c.name}</option>
+                  <option key={c.id} value={c.name} className="bg-slate-50">{c.name}</option>
                 ))}
               </select>
             )}
@@ -152,8 +152,8 @@ export default function ProductFormModal({
               onClick={() => setStatus('disponivel')}
               className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold border transition-colors ${
                 status === 'disponivel'
-                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-400'
-                  : 'border-white/10 text-slate-400'
+                  ? 'border-emerald-500 bg-emerald-500/10 text-emerald-600'
+                  : 'border-slate-200 text-slate-500'
               }`}
             >
               Disponível
@@ -163,8 +163,8 @@ export default function ProductFormModal({
               onClick={() => setStatus('esgotado')}
               className={`flex-1 rounded-lg px-4 py-2.5 text-sm font-semibold border transition-colors ${
                 status === 'esgotado'
-                  ? 'border-slate-400 bg-slate-500/10 text-slate-300'
-                  : 'border-white/10 text-slate-400'
+                  ? 'border-slate-400 bg-slate-500/10 text-slate-600'
+                  : 'border-slate-200 text-slate-500'
               }`}
             >
               Esgotado
@@ -179,7 +179,7 @@ export default function ProductFormModal({
               { label: 'Mais vendido', value: bestseller, set: setBestseller },
               { label: 'Novidade', value: news, set: setNews },
             ].map(({ label, value, set }) => (
-              <label key={label} className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer">
+              <label key={label} className="flex items-center gap-2 text-sm text-slate-600 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={value}
@@ -192,16 +192,16 @@ export default function ProductFormModal({
           </div>
         </FormField>
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-red-600">{error}</p>}
 
         <div className="flex justify-end gap-3 pt-2">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors">
+          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">
             Cancelar
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-60 transition-colors flex items-center gap-2"
+            className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60 transition-colors flex items-center gap-2"
           >
             {saving && <Loader2 size={14} className="animate-spin" />}
             Guardar produto

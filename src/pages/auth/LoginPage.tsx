@@ -33,20 +33,20 @@ export default function LoginPage() {
     <AuthLayout title="Iniciar sessão" subtitle="Aceda ao painel da sua loja.">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email</label>
+          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             placeholder="voce@email.com"
           />
         </div>
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="block text-xs font-bold uppercase tracking-widest text-slate-400">Senha</label>
-            <Link to="/recuperar-senha" className="text-xs text-blue-400 hover:text-blue-300">
+            <label className="block text-xs font-bold uppercase tracking-widest text-slate-500">Senha</label>
+            <Link to="/recuperar-senha" className="text-xs text-blue-600 hover:text-blue-700">
               Esqueceu-se?
             </Link>
           </div>
@@ -55,13 +55,13 @@ export default function LoginPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             placeholder="A sua senha"
           />
         </div>
 
         {error && (
-          <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+          <p className="text-sm text-red-600 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
             {error}
           </p>
         )}
@@ -69,16 +69,16 @@ export default function LoginPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
         >
           {submitting && <Loader2 size={16} className="animate-spin" />}
           Entrar
         </button>
       </form>
 
-      <p className="text-sm text-slate-400 text-center mt-6">
+      <p className="text-sm text-slate-500 text-center mt-6">
         Ainda não tem loja?{' '}
-        <Link to="/registar" className="text-blue-400 hover:text-blue-300 font-semibold">
+        <Link to="/registar" className="text-blue-600 hover:text-blue-700 font-semibold">
           Criar conta grátis
         </Link>
       </p>

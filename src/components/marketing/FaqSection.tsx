@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
+import { Plus } from 'lucide-react';
+import SectionIntro from './SectionIntro';
 
 const FAQS = [
   {
@@ -44,30 +45,27 @@ export default function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-[#0B1120] relative">
+    <section id="faq" className="py-20 sm:py-28 bg-slate-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Dúvidas frequentes</span>
-          <h2 className="font-serif font-light italic text-3xl sm:text-4xl text-white mt-2">
-            Perguntas <span className="font-sans font-black not-italic tracking-tighter uppercase">frequentes</span>
-          </h2>
-        </div>
-
+        <SectionIntro eyebrow="Dúvidas frequentes" title="Perguntas frequentes" description="Tudo o que precisa de saber antes de começar." />
         <div className="space-y-3">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={faq.question} className="glass-card rounded-2xl overflow-hidden">
+              <div
+                key={faq.question}
+                className={`rounded-2xl overflow-hidden transition-colors bg-white border ${isOpen ? 'border-blue-200 shadow-md shadow-blue-600/5' : 'border-slate-200'}`}
+              >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   className="w-full flex items-center justify-between gap-4 px-5 sm:px-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-semibold text-white text-sm sm:text-base">{faq.question}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-blue-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                  />
+                  <span className="font-semibold text-slate-900 text-sm sm:text-base">{faq.question}</span>
+                  <span className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen ? 'bg-blue-600 text-white rotate-45' : 'bg-slate-100 text-slate-500'}`}>
+                    <Plus className="w-4 h-4" />
+                  </span>
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (
@@ -75,9 +73,9 @@ export default function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      transition={{ duration: 0.25 }}
                     >
-                      <p className="px-5 sm:px-6 pb-5 text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+                      <p className="px-5 sm:px-6 pb-5 text-slate-500 text-sm leading-relaxed">{faq.answer}</p>
                     </motion.div>
                   )}
                 </AnimatePresence>

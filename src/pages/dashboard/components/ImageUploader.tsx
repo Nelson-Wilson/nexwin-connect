@@ -68,7 +68,7 @@ export default function ImageUploader({
     <div>
       <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-3">
         {images.map((url, idx) => (
-          <div key={url + idx} className={`relative group ${aspect} rounded-lg overflow-hidden bg-white/5 border border-white/10`}>
+          <div key={url + idx} className={`relative group ${aspect} rounded-lg overflow-hidden bg-slate-50 border border-slate-200`}>
             <img src={url} alt="" className="w-full h-full object-cover" />
             {idx === 0 && (
               <span className="absolute top-1 left-1 bg-blue-600 text-white text-[9px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded">
@@ -77,7 +77,7 @@ export default function ImageUploader({
             )}
             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
               {idx > 0 && (
-                <button type="button" onClick={() => move(idx, -1)} className="w-6 h-6 rounded bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+                <button type="button" onClick={() => move(idx, -1)} className="w-6 h-6 rounded bg-slate-100 hover:bg-slate-200 text-slate-900 flex items-center justify-center">
                   <ChevronLeft size={13} />
                 </button>
               )}
@@ -85,7 +85,7 @@ export default function ImageUploader({
                 <X size={13} />
               </button>
               {idx < images.length - 1 && (
-                <button type="button" onClick={() => move(idx, 1)} className="w-6 h-6 rounded bg-white/10 hover:bg-white/20 text-white flex items-center justify-center">
+                <button type="button" onClick={() => move(idx, 1)} className="w-6 h-6 rounded bg-slate-100 hover:bg-slate-200 text-slate-900 flex items-center justify-center">
                   <ChevronRight size={13} />
                 </button>
               )}
@@ -98,7 +98,7 @@ export default function ImageUploader({
             type="button"
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className={`${aspect} rounded-lg border border-dashed border-white/20 hover:border-blue-500 text-slate-400 hover:text-blue-400 flex flex-col items-center justify-center gap-1 transition-colors disabled:opacity-60`}
+            className={`${aspect} min-h-[84px] min-w-[84px] bg-slate-50 rounded-xl border border-dashed border-slate-300 hover:border-blue-500 text-slate-500 hover:text-blue-700 flex flex-col items-center justify-center gap-1 transition-colors disabled:opacity-60`}
           >
             {uploading ? <Loader2 size={18} className="animate-spin" /> : <Upload size={18} />}
             <span className="text-[10px] font-semibold uppercase tracking-wide">
@@ -122,7 +122,7 @@ export default function ImageUploader({
           <ImageOff size={13} /> Até {maxImages} imagens. A primeira é a imagem principal.
         </p>
       )}
-      {error && <p className="text-xs text-red-400 mt-1">{error}</p>}
+      {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
     </div>
   );
 }

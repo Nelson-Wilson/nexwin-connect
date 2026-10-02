@@ -36,8 +36,8 @@ export default function DashboardLayout() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
-        <Loader2 className="animate-spin text-blue-500" size={28} />
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <Loader2 className="animate-spin text-blue-600" size={28} />
       </div>
     );
   }
@@ -48,19 +48,19 @@ export default function DashboardLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 lg:flex">
+    <div className="min-h-screen bg-slate-50 text-slate-800 lg:flex">
       {/* Barra superior — só em ecrãs pequenos */}
-      <header className="lg:hidden h-16 flex items-center justify-between px-4 border-b border-white/10 sticky top-0 z-30 bg-[#0F172A]">
+      <header className="lg:hidden h-16 flex items-center justify-between px-4 border-b border-slate-200 sticky top-0 z-30 bg-slate-50">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-            <Store size={16} className="text-white" />
+            <Store size={16} className="text-slate-900" />
           </div>
-          <span className="font-display font-bold text-white">{PLATFORM_NAME}</span>
+          <span className="font-display font-bold text-slate-900">{PLATFORM_NAME}</span>
         </div>
         <button
           onClick={() => setSidebarOpen(true)}
           aria-label="Abrir menu"
-          className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+          className="w-9 h-9 rounded-lg flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
         >
           <Menu size={22} />
         </button>
@@ -76,21 +76,21 @@ export default function DashboardLayout() {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 shrink-0 border-r border-white/10 flex flex-col bg-[#0F172A] transform transition-transform duration-300 ease-in-out
+        className={`fixed inset-y-0 left-0 z-50 w-64 shrink-0 border-r border-slate-200 flex flex-col bg-slate-50 transform transition-transform duration-300 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:static lg:translate-x-0 lg:z-auto`}
       >
-        <div className="h-16 flex items-center justify-between gap-2 px-6 border-b border-white/10">
+        <div className="h-16 flex items-center justify-between gap-2 px-6 border-b border-slate-200">
           <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-              <Store size={16} className="text-white" />
+              <Store size={16} className="text-slate-900" />
             </div>
-            <span className="font-display font-bold text-white truncate">{PLATFORM_NAME}</span>
+            <span className="font-display font-bold text-slate-900 truncate">{PLATFORM_NAME}</span>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
             aria-label="Fechar menu"
-            className="lg:hidden w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-colors shrink-0"
+            className="lg:hidden w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-50 transition-colors shrink-0"
           >
             <X size={20} />
           </button>
@@ -106,8 +106,8 @@ export default function DashboardLayout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? 'bg-blue-600/15 text-blue-400 border border-blue-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5 border border-transparent'
+                    ? 'bg-blue-50 text-blue-700 border border-blue-100'
+                    : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100 border border-transparent'
                 }`
               }
             >
@@ -117,14 +117,14 @@ export default function DashboardLayout() {
           ))}
         </nav>
 
-        <div className="p-3 border-t border-white/10">
+        <div className="p-3 border-t border-slate-200">
           <div className="px-3 py-2 mb-1">
-            <p className="text-sm font-semibold text-white truncate">{business?.name}</p>
+            <p className="text-sm font-semibold text-slate-900 truncate">{business?.name}</p>
             <p className="text-xs text-slate-500">Plano {business?.plan === 'pro' ? 'Pro' : 'Grátis'}</p>
           </div>
           <button
             onClick={() => logOut()}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-500 hover:text-red-600 hover:bg-red-500/10 transition-colors"
           >
             <LogOut size={17} />
             Sair

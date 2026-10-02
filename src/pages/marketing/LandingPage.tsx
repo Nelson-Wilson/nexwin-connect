@@ -3,11 +3,10 @@ import MarketingHeader from '../../components/marketing/MarketingHeader';
 import HeroSection from '../../components/marketing/HeroSection';
 import SegmentsSection from '../../components/marketing/SegmentsSection';
 import HowItWorksSection from '../../components/marketing/HowItWorksSection';
-import AboutSection from '../../components/marketing/AboutSection';
+import BenefitsSection from '../../components/marketing/BenefitsSection';
 import FeaturesSection from '../../components/marketing/FeaturesSection';
 import ShowcaseSection from '../../components/marketing/ShowcaseSection';
 import StatsSection from '../../components/marketing/StatsSection';
-import WhyUsSection from '../../components/marketing/WhyUsSection';
 import PlatformTestimonialsSection from '../../components/marketing/PlatformTestimonialsSection';
 import PricingSection from '../../components/marketing/PricingSection';
 import FaqSection from '../../components/marketing/FaqSection';
@@ -59,17 +58,16 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="bg-[#0F172A] min-h-screen text-slate-100 font-sans selection:bg-blue-600 selection:text-white">
+    <div className="bg-slate-50 min-h-screen text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
       <MarketingHeader />
       <main>
         <HeroSection />
-        <SegmentsSection />
-        <HowItWorksSection />
-        <AboutSection />
+        <BenefitsSection />
         <FeaturesSection />
+        <HowItWorksSection />
+        <SegmentsSection />
         <ShowcaseSection />
         <StatsSection />
-        <WhyUsSection />
         <PlatformTestimonialsSection />
         <PricingSection />
         <FaqSection />

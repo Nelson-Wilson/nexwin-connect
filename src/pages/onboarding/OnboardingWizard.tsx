@@ -68,8 +68,8 @@ export default function OnboardingWizard() {
 
   if (loading || !business) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
-        <Loader2 className="animate-spin text-blue-500" size={28} />
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <Loader2 className="animate-spin text-blue-600" size={28} />
       </div>
     );
   }
@@ -123,13 +123,13 @@ export default function OnboardingWizard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col items-center justify-center px-4 py-10">
       <div className="w-full max-w-lg">
         <div className="flex items-center gap-2 mb-6 justify-center">
           <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
-            <StoreIcon size={18} className="text-white" />
+            <StoreIcon size={18} className="text-slate-900" />
           </div>
-          <span className="font-display font-bold text-lg text-white">{PLATFORM_NAME}</span>
+          <span className="font-display font-bold text-lg text-slate-900">{PLATFORM_NAME}</span>
         </div>
 
         {/* Step indicator */}
@@ -138,22 +138,22 @@ export default function OnboardingWizard() {
             <div key={label} className="flex-1">
               <div
                 className={`h-1.5 rounded-full transition-colors ${
-                  idx <= step ? 'bg-blue-500' : 'bg-white/10'
+                  idx <= step ? 'bg-blue-500' : 'bg-slate-100'
                 }`}
               />
             </div>
           ))}
         </div>
-        <p className="text-center text-xs font-bold uppercase tracking-widest text-blue-400 mb-6">
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-blue-600 mb-6">
           Passo {step + 1} de {STEPS.length} · {STEPS[step]}
         </p>
 
-        <div className="glass-card rounded-2xl p-8 shadow-2xl min-h-[280px] flex flex-col">
+        <div className="ui-card rounded-2xl p-8 shadow-2xl min-h-[280px] flex flex-col">
           <div className="flex-1">
             {step === 0 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Como se chama a tua loja?</h1>
-                <p className="text-sm text-slate-400 mb-6">É o nome que os teus clientes vão ver primeiro.</p>
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Como se chama a tua loja?</h1>
+                <p className="text-sm text-slate-500 mb-6">É o nome que os teus clientes vão ver primeiro.</p>
                 <input
                   autoFocus
                   type="text"
@@ -167,8 +167,8 @@ export default function OnboardingWizard() {
 
             {step === 1 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Qual é o teu ramo?</h1>
-                <p className="text-sm text-slate-400 mb-6">Isto ajuda-nos a sugerir categorias mais tarde.</p>
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Qual é o teu ramo?</h1>
+                <p className="text-sm text-slate-500 mb-6">Isto ajuda-nos a sugerir categorias mais tarde.</p>
                 <div className="grid grid-cols-2 gap-3">
                   {(Object.keys(BUSINESS_TYPE_LABELS) as BusinessType[]).map((type) => {
                     const Icon = TYPE_ICONS[type];
@@ -180,8 +180,8 @@ export default function OnboardingWizard() {
                         onClick={() => update('businessType', type)}
                         className={`flex flex-col items-center gap-2 rounded-xl border p-4 transition-colors ${
                           active
-                            ? 'border-blue-500 bg-blue-500/10 text-white'
-                            : 'border-white/10 text-slate-400 hover:border-white/20 hover:text-white'
+                            ? 'border-blue-500 bg-blue-500/10 text-slate-900'
+                            : 'border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-900'
                         }`}
                       >
                         <Icon size={20} />
@@ -195,8 +195,8 @@ export default function OnboardingWizard() {
 
             {step === 2 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Qual é o teu WhatsApp?</h1>
-                <p className="text-sm text-slate-400 mb-6">
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Qual é o teu WhatsApp?</h1>
+                <p className="text-sm text-slate-500 mb-6">
                   Os clientes vão usar este número para fazer encomendas. Podes deixar em branco e adicionar depois.
                 </p>
                 <input
@@ -212,8 +212,8 @@ export default function OnboardingWizard() {
 
             {step === 3 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Adiciona o teu logótipo</h1>
-                <p className="text-sm text-slate-400 mb-6">Opcional — podes adicionar mais tarde em Personalização.</p>
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Adiciona o teu logótipo</h1>
+                <p className="text-sm text-slate-500 mb-6">Opcional — podes adicionar mais tarde em Personalização.</p>
                 <div className="w-32 mx-auto">
                   <ImageUploader
                     businessId={business.id}
@@ -229,8 +229,8 @@ export default function OnboardingWizard() {
 
             {step === 4 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Escolhe um tema</h1>
-                <p className="text-sm text-slate-400 mb-6">A cor principal da tua loja e do teu painel.</p>
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Escolhe um tema</h1>
+                <p className="text-sm text-slate-500 mb-6">A cor principal da tua loja e do teu painel.</p>
                 <div className="grid grid-cols-5 gap-3">
                   {(Object.keys(THEME_COLORS) as ThemeColor[]).map((theme) => {
                     const active = state.theme === theme;
@@ -247,9 +247,9 @@ export default function OnboardingWizard() {
                           }`}
                           style={{ backgroundColor: THEME_COLORS[theme].primary }}
                         >
-                          {active && <Check size={16} className="text-white" />}
+                          {active && <Check size={16} className="text-slate-900" />}
                         </span>
-                        <span className="text-[11px] text-slate-400 capitalize">{theme}</span>
+                        <span className="text-[11px] text-slate-500 capitalize">{theme}</span>
                       </button>
                     );
                   })}
@@ -259,9 +259,9 @@ export default function OnboardingWizard() {
 
             {step === 5 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Endereço da tua loja</h1>
-                <p className="text-sm text-slate-400 mb-6">O link que vais partilhar com os teus clientes.</p>
-                <div className="flex items-center bg-white/5 border border-white/10 rounded-lg overflow-hidden focus-within:border-blue-500 transition-colors">
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Endereço da tua loja</h1>
+                <p className="text-sm text-slate-500 mb-6">O link que vais partilhar com os teus clientes.</p>
+                <div className="flex items-center bg-slate-50 border border-slate-200 rounded-lg overflow-hidden focus-within:border-blue-500 transition-colors">
                   <span className="pl-4 text-sm text-slate-500 whitespace-nowrap">nexstore.app/loja/</span>
                   <input
                     type="text"
@@ -274,7 +274,7 @@ export default function OnboardingWizard() {
                       if (!state.slugEdited && !state.slug) update('slug', slugify(state.name));
                     }}
                     placeholder="loja-da-bianca"
-                    className="w-full bg-transparent px-2 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none"
+                    className="w-full bg-transparent px-2 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -282,10 +282,10 @@ export default function OnboardingWizard() {
 
             {step === 6 && (
               <div>
-                <h1 className="text-xl font-bold text-white mb-1">Tudo pronto!</h1>
-                <p className="text-sm text-slate-400 mb-6">Confirma os dados e publica a tua loja.</p>
+                <h1 className="text-xl font-bold text-slate-900 mb-1">Tudo pronto!</h1>
+                <p className="text-sm text-slate-500 mb-6">Confirma os dados e publica a tua loja.</p>
                 <div className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3 bg-white/5 rounded-lg px-4 py-3">
+                  <div className="flex items-center gap-3 bg-slate-50 rounded-lg px-4 py-3">
                     {state.logo ? (
                       <img src={state.logo} alt="" className="w-9 h-9 rounded-lg object-cover" />
                     ) : (
@@ -293,20 +293,20 @@ export default function OnboardingWizard() {
                         className="w-9 h-9 rounded-lg flex items-center justify-center"
                         style={{ backgroundColor: THEME_COLORS[state.theme].primary }}
                       >
-                        <StoreIcon size={16} className="text-white" />
+                        <StoreIcon size={16} className="text-slate-900" />
                       </span>
                     )}
                     <div>
-                      <p className="text-white font-semibold">{state.name || 'Sem nome'}</p>
-                      <p className="text-slate-400 text-xs">
+                      <p className="text-slate-900 font-semibold">{state.name || 'Sem nome'}</p>
+                      <p className="text-slate-500 text-xs">
                         {BUSINESS_TYPE_LABELS[state.businessType]} · nexstore.app/loja/{slugify(state.slug)}
                       </p>
                     </div>
                   </div>
                   {state.whatsapp && (
-                    <div className="flex justify-between bg-white/5 rounded-lg px-4 py-3">
-                      <span className="text-slate-400">WhatsApp</span>
-                      <span className="text-white">{state.whatsapp}</span>
+                    <div className="flex justify-between bg-slate-50 rounded-lg px-4 py-3">
+                      <span className="text-slate-500">WhatsApp</span>
+                      <span className="text-slate-900">{state.whatsapp}</span>
                     </div>
                   )}
                 </div>
@@ -315,16 +315,16 @@ export default function OnboardingWizard() {
           </div>
 
           {error && (
-            <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2 mt-4">
+            <p className="text-sm text-red-600 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2 mt-4">
               {error}
             </p>
           )}
 
-          <div className="flex items-center justify-between mt-6 pt-6 border-t border-white/10">
+          <div className="flex items-center justify-between mt-6 pt-6 border-t border-slate-200">
             <button
               onClick={goBack}
               disabled={step === 0}
-              className="flex items-center gap-1 text-sm font-semibold text-slate-400 hover:text-white disabled:opacity-0 transition-colors"
+              className="flex items-center gap-1 text-sm font-semibold text-slate-500 hover:text-slate-900 disabled:opacity-0 transition-colors"
             >
               <ChevronLeft size={16} /> Voltar
             </button>
@@ -332,7 +332,7 @@ export default function OnboardingWizard() {
             {step < STEPS.length - 1 ? (
               <button
                 onClick={goNext}
-                className="flex items-center gap-1 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-lg px-5 py-2.5 transition-colors"
+                className="flex items-center gap-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-lg px-5 py-2.5 transition-colors"
               >
                 Continuar <ChevronRight size={16} />
               </button>
@@ -340,7 +340,7 @@ export default function OnboardingWizard() {
               <button
                 onClick={handleFinish}
                 disabled={submitting}
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-bold text-sm rounded-lg px-5 py-2.5 transition-colors"
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-bold text-sm rounded-lg px-5 py-2.5 transition-colors"
               >
                 {submitting && <Loader2 size={16} className="animate-spin" />}
                 Publicar a minha loja

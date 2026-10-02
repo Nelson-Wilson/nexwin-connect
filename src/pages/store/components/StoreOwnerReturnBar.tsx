@@ -20,7 +20,7 @@ export default function StoreOwnerReturnBar({ businessId }: { businessId: string
   return (
     <Link
       to="/painel"
-      className="fixed top-4 left-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2.5 shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-0.5"
+      className="fixed top-4 left-4 z-[60] inline-flex items-center gap-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 shadow-xl shadow-blue-600/30 transition-all hover:-translate-y-0.5"
     >
       <LayoutDashboard className="w-3.5 h-3.5" />
       Voltar ao Painel

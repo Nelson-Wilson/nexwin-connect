@@ -1,76 +1,52 @@
 import { motion } from 'motion/react';
 import { UserPlus, Palette, PackagePlus, Share2, ShoppingCart } from 'lucide-react';
+import SectionIntro from './SectionIntro';
 
 const STEPS = [
-  {
-    icon: UserPlus,
-    title: 'Criar conta',
-    description: 'Registe-se com o seu e-mail em menos de um minuto, sem burocracia.',
-  },
-  {
-    icon: Palette,
-    title: 'Personalizar loja',
-    description: 'Escolha as cores, adicione o seu logótipo e deixe a loja com a sua identidade.',
-  },
-  {
-    icon: PackagePlus,
-    title: 'Adicionar produtos',
-    description: 'Carregue fotos, preços e categorias dos seus produtos ou serviços.',
-  },
-  {
-    icon: Share2,
-    title: 'Partilhar o link',
-    description: 'Divulgue a sua loja no WhatsApp, Instagram e Facebook com um único link.',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Receber encomendas',
-    description: 'Os clientes escolhem os produtos e falam consigo directamente pelo WhatsApp.',
-  },
+  { icon: UserPlus, title: 'Criar conta', description: 'Registe-se com o seu e-mail em menos de um minuto, sem burocracia.' },
+  { icon: Palette, title: 'Personalizar loja', description: 'Escolha as cores, adicione o seu logótipo e deixe a loja com a sua identidade.' },
+  { icon: PackagePlus, title: 'Cadastrar produtos', description: 'Carregue fotos, preços e categorias dos seus produtos ou serviços.' },
+  { icon: Share2, title: 'Compartilhar link', description: 'Divulgue a sua loja no WhatsApp, Instagram e Facebook com um único link.' },
+  { icon: ShoppingCart, title: 'Receber pedidos', description: 'Os clientes escolhem os produtos e falam consigo directamente pelo WhatsApp.' },
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section id="como-funciona" className="py-20 sm:py-28 bg-[#0B1120] relative overflow-hidden">
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[140px] rounded-full pointer-events-none" />
+    <section id="como-funciona" className="py-20 sm:py-28 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionIntro
+          eyebrow="Do zero à primeira venda"
+          title="Como funciona"
+          description="Cinco passos simples entre criar a conta e receber o primeiro pedido."
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Do zero à primeira venda</span>
-          <h2 className="font-serif font-light italic text-3xl sm:text-4xl text-white mt-2">
-            Como <span className="font-sans font-black not-italic tracking-tighter uppercase">funciona</span>
-          </h2>
-          <p className="text-slate-400 font-light mt-3 text-sm sm:text-base">
-            Cinco passos simples entre criar a conta e receber a primeira encomenda.
-          </p>
-        </div>
+        <ol className="relative grid grid-cols-1 lg:grid-cols-5 gap-y-10 lg:gap-6">
+          {/* Timeline rail: vertical on mobile, horizontal on desktop */}
+          <span className="absolute left-6 top-6 bottom-6 w-px bg-gradient-to-b from-blue-200 via-violet-200 to-emerald-200 lg:hidden" />
+          <span className="hidden lg:block absolute top-6 left-[10%] right-[10%] h-px bg-gradient-to-r from-blue-200 via-violet-200 to-emerald-200" />
 
-        <div className="relative">
-          {/* Connector line */}
-          <div className="hidden lg:block absolute top-8 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
-            {STEPS.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="relative flex flex-col items-center text-center"
-              >
-                <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-600/25 mb-5">
-                  <step.icon className="w-7 h-7 text-white" />
-                  <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-[#0B1120] border border-blue-500/40 flex items-center justify-center text-[11px] font-bold text-blue-400">
-                    {index + 1}
-                  </span>
-                </div>
-                <h3 className="font-display font-semibold text-white text-base">{step.title}</h3>
-                <p className="text-slate-400 text-sm mt-2 leading-relaxed max-w-[220px]">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+          {STEPS.map((step, index) => (
+            <motion.li
+              key={step.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="relative flex lg:flex-col lg:items-center gap-5 lg:gap-0 lg:text-center"
+            >
+              <span className="relative z-10 shrink-0 w-12 h-12 rounded-full bg-blue-600 text-white font-display font-extrabold flex items-center justify-center ring-8 ring-slate-50 shadow-lg shadow-blue-600/25">
+                {index + 1}
+              </span>
+              <div className="lg:mt-5">
+                <span className="hidden lg:flex w-11 h-11 mx-auto mb-3 rounded-xl bg-white border border-slate-200 items-center justify-center text-blue-600 shadow-sm">
+                  <step.icon className="w-5 h-5" />
+                </span>
+                <h3 className="font-bold text-slate-900 text-base">{step.title}</h3>
+                <p className="text-slate-500 text-sm mt-1.5 leading-relaxed lg:max-w-[210px] lg:mx-auto">{step.description}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ol>
       </div>
     </section>
   );

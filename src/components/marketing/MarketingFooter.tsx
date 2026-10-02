@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Linkedin, MessageCircle } from 'lucide-react';
+import { BrandMark } from './MarketingHeader';
 
 const COLUMNS = [
   {
@@ -35,23 +36,15 @@ const COLUMNS = [
 
 export default function MarketingFooter() {
   return (
-    <footer id="contacto" className="bg-[#0B1120] border-t border-white/5 pt-16 pb-8">
+    <footer id="contacto" className="bg-slate-900 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
           <div className="col-span-2">
-            <Link to="/" className="flex items-center gap-2">
-              <span className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-display font-bold text-white text-sm">
-                NX
-              </span>
-              <span className="font-display font-bold text-white text-lg">
-                NexWin <span className="text-blue-500">Connect</span>
-              </span>
-            </Link>
+            <BrandMark light />
             <p className="text-slate-400 text-sm mt-4 max-w-xs leading-relaxed">
-              A plataforma que ajuda pequenos e médios negócios de Moçambique a
-              vender online, pelo WhatsApp, sem complicações.
+              A plataforma que ajuda pequenos e médios negócios de Moçambique a vender online, pelo WhatsApp, sem complicações.
             </p>
-            <div className="flex items-center gap-3 mt-5">
+            <div className="flex items-center gap-2.5 mt-5">
               {[
                 { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
                 { icon: Instagram, href: 'https://instagram.com', label: 'Instagram' },
@@ -64,9 +57,9 @@ export default function MarketingFooter() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={social.label}
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-blue-600 flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-xl bg-white/5 hover:bg-blue-600 flex items-center justify-center transition-colors text-slate-300 hover:text-white"
                 >
-                  <social.icon className="w-4 h-4 text-slate-300 hover:text-white" />
+                  <social.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
@@ -94,10 +87,8 @@ export default function MarketingFooter() {
           ))}
         </div>
 
-        <div className="border-t border-white/5 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} NexWin Connect. Todos os direitos reservados.
-          </p>
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-slate-500 text-xs">© {new Date().getFullYear()} NexWin Connect. Todos os direitos reservados.</p>
           <p className="text-slate-500 text-xs">Feito em Moçambique 🇲🇿</p>
         </div>
       </div>

@@ -13,21 +13,21 @@ export default function AuthLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 font-sans flex items-center justify-center px-4 py-12 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex items-center justify-center px-4 py-12 relative overflow-hidden">
       {/* Ambient glow, consistent with the catalogue's premium look */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-md relative">
         <Link to="/" className="flex items-center justify-center gap-2 mb-8 group">
           <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
-            <Store size={18} className="text-white" />
+            <Store size={18} className="text-slate-900" />
           </div>
-          <span className="font-display font-bold text-lg tracking-tight text-white">{PLATFORM_NAME}</span>
+          <span className="font-display font-bold text-lg tracking-tight text-slate-900">{PLATFORM_NAME}</span>
         </Link>
 
-        <div className="glass-card rounded-2xl p-8 shadow-2xl">
-          <h1 className="text-xl font-bold text-white mb-1">{title}</h1>
-          {subtitle && <p className="text-sm text-slate-400 mb-6">{subtitle}</p>}
+        <div className="ui-card rounded-2xl p-8 shadow-2xl">
+          <h1 className="text-xl font-bold text-slate-900 mb-1">{title}</h1>
+          {subtitle && <p className="text-sm text-slate-500 mb-6">{subtitle}</p>}
           {!subtitle && <div className="mb-6" />}
           {children}
         </div>

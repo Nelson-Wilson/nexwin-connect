@@ -90,33 +90,33 @@ export default function ProductsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Pesquisar produtos..."
-            className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-10 pr-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
           />
         </div>
         <select
           value={categoryFilter}
           onChange={(e) => setCategoryFilter(e.target.value)}
-          className="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
+          className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 transition-colors"
         >
-          <option value="todas" className="bg-[#0F172A]">Todas as categorias</option>
+          <option value="todas" className="bg-slate-50">Todas as categorias</option>
           {categories.map((c) => (
-            <option key={c.id} value={c.name} className="bg-[#0F172A]">{c.name}</option>
+            <option key={c.id} value={c.name} className="bg-slate-50">{c.name}</option>
           ))}
         </select>
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value as any)}
-          className="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors"
+          className="bg-slate-50 border border-slate-200 rounded-lg px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:border-blue-500 transition-colors"
         >
-          <option value="todas" className="bg-[#0F172A]">Todos os estados</option>
-          <option value="disponivel" className="bg-[#0F172A]">Disponível</option>
-          <option value="esgotado" className="bg-[#0F172A]">Esgotado</option>
+          <option value="todas" className="bg-slate-50">Todos os estados</option>
+          <option value="disponivel" className="bg-slate-50">Disponível</option>
+          <option value="esgotado" className="bg-slate-50">Esgotado</option>
         </select>
       </div>
 
       {loading ? (
         <div className="flex justify-center py-16">
-          <Loader2 className="animate-spin text-blue-500" size={24} />
+          <Loader2 className="animate-spin text-blue-600" size={24} />
         </div>
       ) : filtered.length === 0 ? (
         <EmptyState
@@ -129,25 +129,25 @@ export default function ProductsPage() {
           }
         />
       ) : (
-        <div className="glass-card rounded-xl divide-y divide-white/5">
+        <div className="ui-card rounded-xl divide-y divide-slate-100">
           {filtered.map((product) => (
             <div key={product.id} className="flex items-center gap-4 px-5 py-3.5">
-              <div className="w-12 h-12 rounded-lg bg-white/5 overflow-hidden shrink-0">
+              <div className="w-12 h-12 rounded-lg bg-slate-50 overflow-hidden shrink-0">
                 {product.images[0] && (
                   <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white truncate">{product.name}</p>
+                <p className="text-sm font-semibold text-slate-900 truncate">{product.name}</p>
                 <p className="text-xs text-slate-500">{product.category}</p>
               </div>
-              <p className="text-sm text-white font-semibold w-24 text-right shrink-0">{product.price} MT</p>
+              <p className="text-sm text-slate-900 font-semibold w-24 text-right shrink-0">{product.price} MT</p>
               <button
                 onClick={() => toggleStatus(product)}
                 className={`flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full shrink-0 transition-colors ${
                   product.status === 'disponivel'
-                    ? 'bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20'
-                    : 'bg-slate-500/10 text-slate-400 hover:bg-slate-500/20'
+                    ? 'bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20'
+                    : 'bg-slate-500/10 text-slate-500 hover:bg-slate-500/20'
                 }`}
               >
                 {product.status === 'disponivel' ? <CheckCircle2 size={12} /> : <XCircle size={12} />}
@@ -157,21 +157,21 @@ export default function ProductsPage() {
                 <button
                   onClick={() => handleDuplicate(product)}
                   title="Duplicar"
-                  className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+                  className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors"
                 >
                   <Copy size={14} />
                 </button>
                 <button
                   onClick={() => setEditing(product)}
                   title="Editar"
-                  className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"
+                  className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-blue-700 hover:bg-blue-50 transition-colors"
                 >
                   <Pencil size={14} />
                 </button>
                 <button
                   onClick={() => setToDelete(product)}
                   title="Eliminar"
-                  className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                  className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-red-600 hover:bg-red-500/10 transition-colors"
                 >
                   <Trash2 size={14} />
                 </button>

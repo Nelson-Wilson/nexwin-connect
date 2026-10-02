@@ -35,7 +35,7 @@ export default function SignupPage() {
     <AuthLayout title="Criar a sua conta" subtitle="Comece a vender online em menos de 5 minutos.">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
+          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">
             Nome completo
           </label>
           <input
@@ -43,36 +43,36 @@ export default function SignupPage() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             placeholder="O seu nome"
           />
         </div>
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email</label>
+          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Email</label>
           <input
             type="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             placeholder="voce@email.com"
           />
         </div>
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Senha</label>
+          <label className="block text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Senha</label>
           <input
             type="password"
             required
             minLength={6}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:border-blue-500 transition-colors"
             placeholder="Mínimo 6 caracteres"
           />
         </div>
 
         {error && (
-          <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
+          <p className="text-sm text-red-600 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">
             {error}
           </p>
         )}
@@ -80,16 +80,16 @@ export default function SignupPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
+          className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-bold text-sm rounded-lg py-2.5 transition-colors flex items-center justify-center gap-2"
         >
           {submitting && <Loader2 size={16} className="animate-spin" />}
           Criar conta grátis
         </button>
       </form>
 
-      <p className="text-sm text-slate-400 text-center mt-6">
+      <p className="text-sm text-slate-500 text-center mt-6">
         Já tem conta?{' '}
-        <Link to="/login" className="text-blue-400 hover:text-blue-300 font-semibold">
+        <Link to="/login" className="text-blue-600 hover:text-blue-700 font-semibold">
           Iniciar sessão
         </Link>
       </p>

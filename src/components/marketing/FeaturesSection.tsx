@@ -1,24 +1,16 @@
-import { useRef } from 'react';
 import { motion } from 'motion/react';
 import {
-  UploadCloud,
-  Tags,
-  Search,
-  SlidersHorizontal,
-  Images,
-  MessageCircle,
-  Paintbrush,
-  LayoutDashboard,
-  BadgePercent,
-  GalleryHorizontal,
-  Smartphone,
-  Building2,
-  Gauge,
-  MonitorSmartphone,
-  BarChart3,
-  ShieldCheck,
+  UploadCloud, Tags, Search, SlidersHorizontal, Images, MessageCircle, Paintbrush, LayoutDashboard,
+  BadgePercent, GalleryHorizontal, Smartphone, Building2, Gauge, MonitorSmartphone, BarChart3, ShieldCheck,
 } from 'lucide-react';
-import { useTilt } from '../../hooks/useTilt';
+import SectionIntro from './SectionIntro';
+
+const TONES = [
+  'bg-blue-50 text-blue-600',
+  'bg-violet-50 text-violet-600',
+  'bg-emerald-50 text-emerald-600',
+  'bg-sky-50 text-sky-600',
+];
 
 const FEATURES = [
   { icon: UploadCloud, title: 'Upload de Produtos', text: 'Adicione fotos e descrições em segundos.' },
@@ -40,35 +32,29 @@ const FEATURES = [
 ];
 
 export default function FeaturesSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  useTilt(containerRef);
-
   return (
-    <section id="funcionalidades" className="py-20 sm:py-28 bg-[#0B1120] relative">
+    <section id="funcionalidades" className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500">Tudo incluído</span>
-          <h2 className="font-serif font-light italic text-3xl sm:text-4xl text-white mt-2">
-            Funcionalidades <span className="font-sans font-black not-italic tracking-tighter uppercase">completas</span>
-          </h2>
-          <p className="text-slate-400 font-light mt-3 text-sm sm:text-base">
-            Tudo o que precisa para gerir e fazer crescer a sua loja, num só lugar.
-          </p>
-        </div>
-
-        <div ref={containerRef} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 perspective-1000">
+        <SectionIntro
+          eyebrow="Tudo incluído"
+          title="Tudo o que precisa para vender online"
+          description="Ferramentas simples para gerir e fazer crescer a sua loja, num só lugar."
+        />
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {FEATURES.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.4, delay: (index % 8) * 0.05 }}
-              className="tilt-card glass-card glass-card-hover rounded-2xl p-5"
+              transition={{ duration: 0.4, delay: (index % 4) * 0.05 }}
+              className="ui-card ui-card-hover rounded-2xl p-5"
             >
-              <feature.icon className="w-5 h-5 text-blue-400 mb-3" />
-              <h3 className="font-semibold text-white text-sm">{feature.title}</h3>
-              <p className="text-slate-400 text-xs mt-1.5 leading-relaxed">{feature.text}</p>
+              <span className={`w-10 h-10 rounded-xl flex items-center justify-center ${TONES[index % TONES.length]}`}>
+                <feature.icon className="w-5 h-5" />
+              </span>
+              <h3 className="font-bold text-slate-900 text-sm mt-4">{feature.title}</h3>
+              <p className="text-slate-500 text-xs mt-1.5 leading-relaxed">{feature.text}</p>
             </motion.div>
           ))}
         </div>

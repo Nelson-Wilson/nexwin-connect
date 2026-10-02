@@ -65,33 +65,33 @@ export default function BannersPage() {
       />
 
       {loading ? (
-        <div className="flex justify-center py-16"><Loader2 className="animate-spin text-blue-500" size={24} /></div>
+        <div className="flex justify-center py-16"><Loader2 className="animate-spin text-blue-600" size={24} /></div>
       ) : banners.length === 0 ? (
         <EmptyState icon={<ImageIcon size={32} />} title="Ainda não tens banners" description="Cria o primeiro banner promocional da tua loja." />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {banners.map((banner, idx) => (
-            <div key={banner.id} className="glass-card rounded-xl overflow-hidden">
-              <div className="aspect-video bg-white/5">
+            <div key={banner.id} className="ui-card rounded-xl overflow-hidden">
+              <div className="aspect-video bg-slate-50">
                 {banner.image && <img src={banner.image} alt={banner.title} className="w-full h-full object-cover" />}
               </div>
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <p className="text-sm font-semibold text-white">{banner.title}</p>
+                  <p className="text-sm font-semibold text-slate-900">{banner.title}</p>
                   <button
                     onClick={() => toggleActive(banner)}
                     className={`text-[10px] font-bold uppercase tracking-wide px-2 py-1 rounded-full shrink-0 ${
-                      banner.active ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-500/10 text-slate-400'
+                      banner.active ? 'bg-emerald-500/10 text-emerald-600' : 'bg-slate-500/10 text-slate-500'
                     }`}
                   >
                     {banner.active ? 'Ativo' : 'Inativo'}
                   </button>
                 </div>
                 <div className="flex items-center gap-1">
-                  <button onClick={() => move(idx, -1)} disabled={idx === 0} className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition-colors"><ArrowUp size={13} /></button>
-                  <button onClick={() => move(idx, 1)} disabled={idx === banners.length - 1} className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-20 transition-colors"><ArrowDown size={13} /></button>
-                  <button onClick={() => setEditing(banner)} className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><Pencil size={13} /></button>
-                  <button onClick={() => setToDelete(banner)} className="w-7 h-7 rounded flex items-center justify-center text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"><Trash2 size={13} /></button>
+                  <button onClick={() => move(idx, -1)} disabled={idx === 0} className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-20 transition-colors"><ArrowUp size={13} /></button>
+                  <button onClick={() => move(idx, 1)} disabled={idx === banners.length - 1} className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-slate-900 hover:bg-slate-100 disabled:opacity-20 transition-colors"><ArrowDown size={13} /></button>
+                  <button onClick={() => setEditing(banner)} className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-blue-700 hover:bg-blue-50 transition-colors"><Pencil size={13} /></button>
+                  <button onClick={() => setToDelete(banner)} className="w-7 h-7 rounded flex items-center justify-center text-slate-500 hover:text-red-600 hover:bg-red-500/10 transition-colors"><Trash2 size={13} /></button>
                 </div>
               </div>
             </div>
@@ -185,11 +185,11 @@ function BannerFormModal({
           <input type="text" value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://..." className={inputClass} />
         </FormField>
 
-        {error && <p className="text-sm text-red-400">{error}</p>}
+        {error && <p className="text-sm text-red-600">{error}</p>}
 
         <div className="flex justify-end gap-3 pt-2">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-300 hover:bg-white/5 transition-colors">Cancelar</button>
-          <button onClick={handleSave} disabled={saving} className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 disabled:opacity-60 transition-colors flex items-center gap-2">
+          <button onClick={onClose} className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-50 transition-colors">Cancelar</button>
+          <button onClick={handleSave} disabled={saving} className="px-4 py-2 rounded-lg text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60 transition-colors flex items-center gap-2">
             {saving && <Loader2 size={14} className="animate-spin" />}
             Guardar
           </button>

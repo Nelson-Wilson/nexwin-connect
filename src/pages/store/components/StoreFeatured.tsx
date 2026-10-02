@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
-import { Sparkles, MessageSquare } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
+import StoreProductCard from './StoreProductCard';
 
 export default function StoreFeatured() {
   const { products, accent, whatsappLink, openProduct } = useStore();
@@ -9,56 +10,34 @@ export default function StoreFeatured() {
   if (featured.length === 0) return null;
 
   return (
-    <section className="py-16 bg-[#0b1425] border-y border-white/5">
+    <section className="py-16 sm:py-20 bg-white border-y border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 mb-8">
-          <span className="flex items-center justify-center p-2 rounded-lg" style={{ backgroundColor: `${accent}22`, color: accent }}>
-            <Sparkles size={16} />
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="flex items-center gap-3 mb-8"
+        >
+          <span className="flex items-center justify-center w-10 h-10 rounded-xl" style={{ backgroundColor: `${accent}18`, color: accent }}>
+            <Sparkles size={18} />
           </span>
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: accent }}>Selecionados para si</span>
-            <h2 className="font-display font-black text-2xl text-white tracking-tight">Produtos em Destaque</h2>
+            <span className="text-sm font-semibold" style={{ color: accent }}>Selecionados para si</span>
+            <h2 className="font-display font-extrabold text-2xl text-slate-900 tracking-tight">Produtos em destaque</h2>
           </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-          {featured.map((product, idx) => {
-            const wa = whatsappLink(`Olá, tenho interesse no produto em destaque *${product.name}* (${product.price} MT).`);
-            return (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                onClick={() => openProduct(product)}
-                className="group rounded-2xl glass-card overflow-hidden cursor-pointer hover:-translate-y-1.5 transition-all"
-              >
-                <div className="aspect-square bg-slate-950 overflow-hidden">
-                  {product.images[0] && (
-                    <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
-                  )}
-                </div>
-                <div className="p-4">
-                  <h3 className="font-display font-bold text-sm text-white line-clamp-1">{product.name}</h3>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="font-mono font-bold text-sm" style={{ color: accent }}>{product.price} MT</span>
-                    {wa && (
-                      <a
-                        href={wa}
-                        target="_blank"
-                        rel="noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white transition-colors"
-                      >
-                        <MessageSquare size={12} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+        </motion.div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+          {featured.map((product, idx) => (
+            <StoreProductCard
+              key={product.id}
+              product={product}
+              accent={accent}
+              orderHref={whatsappLink(`Olá, tenho interesse no produto em destaque *${product.name}* (${product.price} MT).`)}
+              onOpen={() => openProduct(product)}
+              index={idx}
+            />
+          ))}
         </div>
       </div>
     </section>

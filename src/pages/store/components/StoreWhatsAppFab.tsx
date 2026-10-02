@@ -11,7 +11,7 @@ export default function StoreWhatsAppFab() {
       href={wa}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-40 bg-emerald-600 hover:bg-emerald-500 text-white p-3.5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border border-emerald-500/30 group"
+      className="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border border-emerald-500/30 group"
       title="Falar no WhatsApp"
     >
       <MessageCircle size={22} />
