@@ -141,8 +141,8 @@ export default function PublicStorePage() {
         ) : (
           <>
             <StoreHero onExploreClick={handleExplore} />
-            <StoreBanners />
             <StoreCategories onCategorySelect={setSelectedCategory} />
+            <StoreBanners />
             <StoreCatalogue selectedCategory={selectedCategory} onCategorySelect={setSelectedCategory} searchText={searchText} />
             <StoreFeatured />
             <StorePromotions />

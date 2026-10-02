@@ -1,12 +1,7 @@
 import { motion } from 'motion/react';
-import { MessageSquare, Share2, ImageOff } from 'lucide-react';
+import { MessageSquare, Share2, ImageOff, Heart } from 'lucide-react';
 import type { StoreProduct } from '../../../models/product.model';
 
-/**
- * Shared product card for the public storefront (catalogue + featured).
- * Behaviour is identical to the previous inline cards: clicking opens the
- * product modal, the WhatsApp link opens the order message, sharing copies/shares the deep link.
- */
 export default function StoreProductCard({
   product,
   accent,
@@ -34,56 +29,68 @@ export default function StoreProductCard({
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.04, 0.3) }}
       onClick={onOpen}
-      className="group flex flex-col h-full rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-900/10 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(15,23,42,0.08)]"
     >
-      <div className="relative aspect-[4/5] w-full bg-slate-100 overflow-hidden">
+      <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-100">
         {product.images[0] ? (
           <img
             src={product.images[0]}
             alt={product.name}
             loading="lazy"
-            className={`w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${soldOut ? 'grayscale opacity-70' : ''}`}
+            className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${soldOut ? 'grayscale opacity-70' : ''}`}
             referrerPolicy="no-referrer"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-slate-300">
+          <div className="flex h-full w-full items-center justify-center text-slate-300">
             <ImageOff size={30} />
           </div>
         )}
 
-        <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5 z-10">
+        <div className="absolute left-3 top-3 z-10 flex flex-wrap items-center gap-1.5">
           {soldOut ? (
-            <span className="bg-slate-900 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Esgotado</span>
+            <span className="rounded-full bg-slate-900 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">Esgotado</span>
           ) : (
             <>
-              {onSale && <span className="bg-rose-500 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">Promoção · -{discount}%</span>}
-              {product.news && <span className="text-white text-[11px] font-bold px-2.5 py-1 rounded-full" style={{ backgroundColor: accent }}>Novo</span>}
-              {product.bestseller && <span className="bg-amber-400 text-slate-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Mais vendido</span>}
+              {onSale && <span className="rounded-full bg-rose-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white">Promoção -{discount}%</span>}
+              {product.news && <span className="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white" style={{ backgroundColor: accent }}>Novo</span>}
+              {product.bestseller && <span className="rounded-full bg-amber-400 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-900">Mais vendido</span>}
             </>
           )}
         </div>
 
-        {onShare && (
+        <div className="absolute right-3 top-3 z-10 flex items-center gap-2">
           <button
-            onClick={onShare}
-            aria-label="Partilhar produto"
-            className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/95 text-slate-600 hover:text-slate-900 shadow-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+            type="button"
+            aria-label="Guardar produto"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-sm transition-colors hover:text-slate-900"
+            onClick={(e) => e.stopPropagation()}
           >
-            <Share2 size={14} />
+            <Heart size={15} />
           </button>
-        )}
+          {onShare && (
+            <button
+              type="button"
+              onClick={onShare}
+              aria-label="Partilhar produto"
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-sm transition-colors hover:text-slate-900"
+            >
+              <Share2 size={15} />
+            </button>
+          )}
+        </div>
       </div>
 
-      <div className="p-4 flex flex-col flex-grow">
-        <span className="text-xs text-slate-400 font-medium">{product.category}</span>
-        <h3 className="font-display font-bold text-[15px] text-slate-900 mt-1 line-clamp-1">{product.name}</h3>
-        <p className="text-xs text-slate-500 mt-1.5 line-clamp-2 leading-relaxed min-h-[2rem]">{product.description}</p>
+      <div className="flex flex-1 flex-col p-4">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400">{product.category}</span>
+        <h3 className="mt-2 text-lg font-extrabold tracking-[-0.04em] text-slate-900">{product.name}</h3>
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-500">{product.description}</p>
 
-        <div className="mt-auto pt-4 flex items-end justify-between gap-3">
-          <div className="flex flex-col leading-tight">
-            {onSale && <span className="text-xs text-slate-400 line-through">{product.originalPrice} MT</span>}
-            <span className="font-display font-extrabold text-xl text-slate-900">{product.price} MT</span>
+        <div className="mt-auto pt-4">
+          <div className="flex items-baseline gap-2">
+            {onSale && <span className="text-sm text-slate-400 line-through">{product.originalPrice} MT</span>}
+            <span className="text-xl font-extrabold tracking-[-0.04em]" style={{ color: accent }}>{product.price} MT</span>
           </div>
+
           {orderHref && (
             <a
               href={orderHref}
@@ -91,14 +98,13 @@ export default function StoreProductCard({
               rel="noreferrer"
               onClick={(e) => e.stopPropagation()}
               aria-disabled={soldOut}
-              className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-                soldOut
-                  ? 'bg-slate-100 text-slate-400 pointer-events-none'
-                  : 'bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/25 active:scale-95'
+              className={`mt-4 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-all ${
+                soldOut ? 'pointer-events-none bg-slate-100 text-slate-400' : 'text-white shadow-lg shadow-blue-500/20 hover:-translate-y-0.5'
               }`}
+              style={{ backgroundColor: soldOut ? undefined : accent }}
             >
-              <MessageSquare size={14} />
-              Pedir
+              <MessageSquare size={15} />
+              Ver detalhes
             </a>
           )}
         </div>
